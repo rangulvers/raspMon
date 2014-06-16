@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <script type="text/javascript" src="lib/js/jQuery/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="lib/js/socketIO/socketio.js"></script>
+        <script type="text/javascript" src="lib/js/AngularJS/angular.min.js"></script>
+        <script type="text/javascript" src="lib/js/ChartJS/chart.js"></script>
+        <script type="text/javascript" src="lib/js/AngularJS/Angles.js"></script>
+        <script type="text/javascript" src="lib/js/AngularJS/app/services/services.js"></script>
+        <script type="text/javascript" src="lib/js/AngularJS/app/app.js"></script>
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    </head>
+    <body ng-app="raspMon" ng-controller="raspCtrl">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">System Informationen</h3>
+            </div>
+            <div class="panel-body">
+                <p><strong>Hostname : </strong> {{hostname}} </p>
+                <p><strong>Platform : </strong> {{platform}} </p>
+                <p><strong>Type : </strong> {{type}} </p>
+                <p><strong>release : </strong> {{release}} </p>
+                <p><strong>Uptime in Minuten : </strong> {{uptime}}</p>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Load Avg.</h3>
+            </div>
+            <div class="panel-body">
+<canvas linechart options="options" data="chart" height="300" ></canvas>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Memory</h3>
+            </div>
+            <div class="panel-body">
+                <p><strong>Totaler RAM (MB) :</strong> {{totalmem}} <strong>Belegter RAM (MB) :</strong> {{usedmem}} <strong>Freier RAM (MB) :</strong> {{freemem}}</p>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning" style="width: {{100-fMemPro}}%">
+                        {{100-fMemPro}}%
+                    </div>
+                    <div class="progress-bar progress-bar-success" style="width: {{fMemPro}}%">
+                        <span class="sr-only">{{fMemPro}}% Complete (warning)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">CPUs</h3>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-body" ng-repeat="cpu in cpus">
+                        {{cpu.model}}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Idle</th>
+                                    <th>IRQ</th>
+                                    <th>Nice</th>
+                                    <th>Sys</th>
+                                    <th>User</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{cpu.times['idle']}}</td>
+                                    <td>{{cpu.times['irq']}}</td>
+                                    <td>{{cpu.times['nice']}}</td>
+                                    <td>{{cpu.times['sys']}}</td>
+                                    <td>{{cpu.times['user']}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Network</h3>
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-body" ng-repeat="(key, net) in network">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{key}}</h3>
+                            </div>
+                            <table class="table" ng-repeat="n in net">
+                                <thead>
+                                    <tr>
+                                        <th>Address</th>
+                                        <th>Family</th>
+                                        <th>Internal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{n.address}}</td>
+                                        <td>{{n.family}}</td>
+                                        <td>{{n.internal}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

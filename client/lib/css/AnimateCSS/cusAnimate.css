@@ -1,0 +1,11 @@
+.chatList.ng-enter{
+  -webkit-animation: pulse 1s;
+  -o-animation: pulse 1s;
+  animation: pulse 1s;
+}
+
+.chatList.ng-leave{
+  -webkit-animation: bounceOut 0.5s;
+  -o-animation: bounceOut 0.5s;
+  animation: bounceOut 0.5s;
+}

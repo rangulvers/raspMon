@@ -19,11 +19,33 @@
                 <h3 class="panel-title">System Informationen</h3>
             </div>
             <div class="panel-body">
-                <p><strong>Hostname : </strong> {{hostname}} </p>
-                <p><strong>Platform : </strong> {{platform}} </p>
-                <p><strong>Type : </strong> {{type}} </p>
-                <p><strong>release : </strong> {{release}} </p>
-                <p><strong>Uptime in Minuten : </strong> {{uptime}}</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Hostname : </td>
+                                <td>{{hostname}}</td>
+                            </tr>
+                            <tr>
+                                <td>Platform : </td>
+                                <td>{{platform}}</td>
+                            </tr>
+                            <tr>
+                                <td>Type : </td>
+                                <td>{{type}}</td>
+                            </tr>
+                            <tr>
+                                <td>Realease : </td>
+                                <td>{{release}}</td>
+                            </tr>
+                            <tr>
+                                <td>Boot Time : </td>
+                                <td>{{uptime}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
         <div class="panel panel-primary">
